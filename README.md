@@ -150,9 +150,9 @@ El objetivo es reforzar habilidades matemáticas básicas, mejorar la atención 
 
 ## 👨‍💻 Autores
 
-**Jesús Alveo**
+**Jesús Alveo, Roniel Quintero y Miguel Concepción**
 
-Estudiante de Licenciatura en Desarrollo y Gestión de Software.
+Estudiantes de Licenciatura en Desarrollo y Gestión de Software.
 
 ---
 
