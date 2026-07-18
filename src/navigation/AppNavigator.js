@@ -14,53 +14,27 @@ const Stack = createNativeStackNavigator();
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{
-          headerShown: false
+          headerShown: false,
         }}
       >
+        {/* Persona 1: interfaz principal */}
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Mode" component={ModeScreen} />
 
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-        />
+        {/* Persona 2: modo niveles */}
+        <Stack.Screen name="LevelSelect" component={LevelSelectScreen} />
+        <Stack.Screen name="LevelGame" component={LevelGameScreen} />
 
-        <Stack.Screen
-          name="Mode"
-          component={ModeScreen}
-        />
-        { // Aquí se han comentado las pantallas de juego y resultados para que no aparezcan en la navegación
-        }
-{/* 
-        <Stack.Screen
-          name="LevelSelect"
-          component={LevelSelectScreen}
-        />
+        {/* Persona 3: modo infinito */}
+        <Stack.Screen name="InfiniteGame" component={InfiniteGameScreen} />
 
-        <Stack.Screen
-          name="LevelGame"
-          component={LevelGameScreen}
-        />
-
-        <Stack.Screen
-          name="InfiniteGame"
-          component={InfiniteGameScreen}
-        />
-
-        <Stack.Screen
-          name="Win"
-          component={WinScreen}
-        />
-
-        <Stack.Screen
-          name="Lose"
-          component={LoseScreen}
-        /> */}
-
+        {/* Resultado común */}
+        <Stack.Screen name="Win" component={WinScreen} />
+        <Stack.Screen name="Lose" component={LoseScreen} />
       </Stack.Navigator>
-
     </NavigationContainer>
   );
 }
