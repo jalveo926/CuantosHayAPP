@@ -149,15 +149,16 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
 
-	gameArea: {
+  gameArea: {
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
+    alignContent: "center",
     alignItems: "center",
-    paddingHorizontal: 10,
-    paddingVertical: 30,
-	},
+    paddingHorizontal: 15,
+    paddingVertical: 20
+  },
 
   emoji: {
     fontSize: 70,
@@ -197,8 +198,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 250,
-    height: 250,
+    width: 80,
+    height: 80,
     resizeMode: "contain",
     margin: 10,
 	},
