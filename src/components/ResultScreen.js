@@ -24,15 +24,15 @@ export default function ResultScreen({
   function getMessage(score) {
 
     if (score <= 3)
-      return "¡Puedes hacerlo! 💪";
+      return "¡Puedes hacerlo!";
 
     if (score <= 7)
-      return "¡Muy bien! 🌟";
+      return "¡Muy bien!";
 
     if (score <= 12)
-      return "¡Excelente trabajo! 🎉";
+      return "¡Excelente trabajo!";
 
-    return "¡Eres un campeón! 👑";
+    return "¡Eres un campeón!";
   }
 
   const returnToGame = () => {

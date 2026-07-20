@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
+  Image,
   TouchableOpacity,
   StyleSheet
 } from "react-native";
@@ -9,15 +10,16 @@ import {
 import { generateGame } from "../services/gameGenerator";
 import { addPoint, getScore, resetScore } from "../utils/score";
 
-const emojiMap = {
-  apple: "🍎",
-  lion: "🦁",
-  banana: "🍌",
-  cat: "🐱",
-  dog: "🐶",
-  ball: "⚽",
-  star: "⭐",
-  car: "🚗"
+const imageMap = {
+  apple: require("../../assets/apple.png"),
+  lion: require("../../assets/lion.png"),
+  banana: require("../../assets/banana.png"),
+  cat: require("../../assets/cat.png"),
+  dog: require("../../assets/dog.png"),
+  ball: require("../../assets/ball.png"),
+  star: require("../../assets/star.png"),
+  car: require("../../assets/car.png"),
+  duck: require("../../assets/duck.png")
 };
 
 export default function InfiniteGameScreen({ navigation }) {
@@ -83,12 +85,11 @@ export default function InfiniteGameScreen({ navigation }) {
         {
           Array.from({ length: game.quantity }).map((_, index) => (
 
-            <Text
-              key={index}
-              style={styles.emoji}
-            >
-              {emojiMap[game.object]}
-            </Text>
+			<Image
+				key={index}
+				source={imageMap[game.object]}
+				style={styles.image}
+			/>
 
           ))
         }
@@ -206,6 +207,13 @@ const styles = StyleSheet.create({
     fontSize: 38,
     fontWeight: "bold",
     color: "#000"
-  }
+  },
+
+  image: {
+    width: 80,
+    height: 80,
+    resizeMode: "contain",
+    margin: 10,
+	},
 
 });
