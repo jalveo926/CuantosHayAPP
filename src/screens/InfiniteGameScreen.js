@@ -3,17 +3,20 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity,
   StyleSheet
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { imageMap } from "../data/images";
 import { generateGame } from "../services/gameGenerator";
 import { addPoint, getScore, resetScore } from "../utils/score";
+import SoundButton from "../components/SoundButton";
+import { useGameAudio } from "../audio/GameAudioProvider";
 
 export default function InfiniteGameScreen({ navigation }) {
 
   const [game, setGame] = useState(null);
   const [score, setScore] = useState(0);
+  const { playCorrect, playIncorrect } = useGameAudio();
 
   useEffect(() => {
     resetScore();
@@ -28,6 +31,8 @@ export default function InfiniteGameScreen({ navigation }) {
 
     if (answer === game.correctAnswer) {
 
+      playCorrect();
+
       const newScore = addPoint();
       setScore(newScore);
 
@@ -36,6 +41,7 @@ export default function InfiniteGameScreen({ navigation }) {
       }, 400);
 
     } else {
+      playIncorrect();
       navigation.navigate("Lose", {
         score: getScore(),
         returnRoute: "InfiniteGame",
@@ -49,7 +55,7 @@ export default function InfiniteGameScreen({ navigation }) {
 
   return (
 
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
 
       {/* HEADER */}
 
@@ -96,7 +102,7 @@ export default function InfiniteGameScreen({ navigation }) {
         {
           game.options.map(option => (
 
-            <TouchableOpacity
+            <SoundButton
               key={option}
               style={styles.answerButton}
               onPress={() => checkAnswer(option)}
@@ -106,14 +112,14 @@ export default function InfiniteGameScreen({ navigation }) {
                 {option}
               </Text>
 
-            </TouchableOpacity>
+            </SoundButton>
 
           ))
         }
 
       </View>
 
-    </View>
+    </SafeAreaView>
 
   );
 
@@ -128,7 +134,7 @@ const styles = StyleSheet.create({
 
   header: {
     backgroundColor: "#B8DBF8",
-    paddingTop: 55,
+    paddingTop: 20,
     paddingBottom: 20,
     alignItems: "center",
     borderBottomLeftRadius: 20,

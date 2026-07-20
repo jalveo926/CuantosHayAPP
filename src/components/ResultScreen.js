@@ -1,12 +1,12 @@
 import React from "react";
 import {
   Image,
-  SafeAreaView,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../styles/components/ResultScreen.styles";
+import SoundButton from "./SoundButton";
 
 export default function ResultScreen({
   navigation,
@@ -71,7 +71,7 @@ export default function ResultScreen({
         </Text>
 
 
-        <TouchableOpacity
+        <SoundButton
           accessibilityRole="button"
           accessibilityLabel={direction === "right" ? "Continuar" : "Intentar otra vez"}
           activeOpacity={0.8}
@@ -88,9 +88,9 @@ export default function ResultScreen({
             ]}
           />
 
-        </TouchableOpacity>
+        </SoundButton>
 
-        <TouchableOpacity
+        <SoundButton
           accessibilityRole="button"
           accessibilityLabel="Menu"
           activeOpacity={0.8}
@@ -98,7 +98,7 @@ export default function ResultScreen({
           style={[styles.menuButton]}
         >
           <Text style={styles.menuText}>Menu</Text>
-        </TouchableOpacity>
+        </SoundButton>
 
       </View>
 

@@ -1,13 +1,13 @@
 import React from "react";
 import {
   Image,
-  SafeAreaView,
   ScrollView,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../styles/screens/ModeScreen.styles";
+import SoundButton from "../components/SoundButton";
 
 const logo = require("../../assets/cuantoshaylogo.png");
 
@@ -22,14 +22,14 @@ export default function ModeScreen({ navigation }) {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.header}>
-          <TouchableOpacity
+          <SoundButton
             accessibilityRole="button"
             accessibilityLabel="Volver al inicio"
             style={styles.backButton}
-            onPress={() => navigation.goBack()}
+            onPress={() => navigation.replace("Home")}
           >
             <Text style={styles.backIcon}>‹</Text>
-          </TouchableOpacity>
+          </SoundButton>
 
           <Image source={logo} style={styles.logo} accessibilityLabel="Logo de Cuántos Hay" />
           <View style={styles.headerSpacer} />
@@ -41,7 +41,7 @@ export default function ModeScreen({ navigation }) {
           <Text style={styles.subtitle}>Elige una aventura para comenzar</Text>
         </View>
 
-        <TouchableOpacity
+        <SoundButton
           accessibilityRole="button"
           accessibilityLabel="Jugar modo infinito"
           activeOpacity={0.86}
@@ -58,9 +58,9 @@ export default function ModeScreen({ navigation }) {
           <View style={styles.cardArrowCircle}>
             <Text style={styles.cardArrow}>›</Text>
           </View>
-        </TouchableOpacity>
+        </SoundButton>
 
-        <TouchableOpacity
+        <SoundButton
           accessibilityRole="button"
           accessibilityLabel="Jugar por niveles"
           activeOpacity={0.86}
@@ -77,7 +77,7 @@ export default function ModeScreen({ navigation }) {
           <View style={styles.cardArrowCircle}>
             <Text style={styles.cardArrow}>›</Text>
           </View>
-        </TouchableOpacity>
+        </SoundButton>
 
         <View style={styles.tipCard}>
           <View style={styles.starBadge}>

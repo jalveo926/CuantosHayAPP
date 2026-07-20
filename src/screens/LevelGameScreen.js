@@ -3,19 +3,22 @@ import {
 	View,
 	Text,
 	Image,
-	TouchableOpacity,
 	StyleSheet,
 	Alert,
 	ScrollView,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { levels } from "../data/levels";
 import { imageMap } from "../data/images";
 import { unlockNextLevel, addPoint, getScore } from "../services/progress";
+import SoundButton from "../components/SoundButton";
+import { useGameAudio } from "../audio/GameAudioProvider";
 
 export default function LevelGameScreen({ navigation, route }) {
 	const { levelId } = route.params || { levelId: 1 };
 	const [level, setLevel] = useState(null);
 	const [score, setScore] = useState(0);
+	const { playCorrect, playIncorrect } = useGameAudio();
 
 	useEffect(() => {
 		const l = levels.find((x) => x.id === Number(levelId)) || levels[0];
@@ -32,6 +35,7 @@ export default function LevelGameScreen({ navigation, route }) {
 
 	const handleAnswer = async (value) => {
 		if (value === level.quantity) {
+			playCorrect();
 			// correcto: incrementar puntaje y desbloquear siguiente nivel si existe
 			const newScore = await addPoint();
 			await unlockNextLevel(level.id);
@@ -41,6 +45,7 @@ export default function LevelGameScreen({ navigation, route }) {
 				returnParams: level.id < levels.length ? { levelId: level.id + 1 } : undefined,
 			});
 		} else {
+			playIncorrect();
 			const s = await getScore();
 			navigation.navigate("Lose", {
 				score: s,
@@ -51,7 +56,7 @@ export default function LevelGameScreen({ navigation, route }) {
 	};
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 
 			<View style={styles.header}>
 
@@ -71,17 +76,17 @@ export default function LevelGameScreen({ navigation, route }) {
 
 			<View style={styles.answers}>
 				{level.options.map((option) => (
-					<TouchableOpacity
+					<SoundButton
 						key={option}
 						style={styles.answerButton}
 						onPress={() => handleAnswer(option)}
 					>
 						<Text style={styles.answerText}>{option}</Text>
-					</TouchableOpacity>
+					</SoundButton>
 				))}
 			</View>
 
-		</View>
+		</SafeAreaView>
 	);
 }
 
@@ -94,7 +99,7 @@ const styles = StyleSheet.create({
 
 	header: {
 		backgroundColor: "#B8DBF8",
-		paddingTop: 55,
+		paddingTop: 20,
 		paddingBottom: 20,
 		alignItems: "center",
 		borderBottomLeftRadius: 20,

@@ -1,12 +1,12 @@
 import React from "react";
 import {
   Image,
-  SafeAreaView,
   Text,
-  TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../styles/screens/HomeScreen.styles";
+import SoundButton from "../components/SoundButton";
 
 const logo = require("../../assets/cuantoshaylogo.png");
 
@@ -28,7 +28,7 @@ export default function HomeScreen({ navigation }) {
 
         <Text style={styles.subtitle}>Mira, cuenta y elige la respuesta correcta</Text>
 
-        <TouchableOpacity
+        <SoundButton
           accessibilityRole="button"
           accessibilityLabel="Comenzar a jugar"
           activeOpacity={0.85}
@@ -39,7 +39,7 @@ export default function HomeScreen({ navigation }) {
             <View style={styles.playIcon} />
           </View>
           <Text style={styles.playText}>¡VAMOS A JUGAR!</Text>
-        </TouchableOpacity>
+        </SoundButton>
 
         <View style={styles.skillsRow}>
           <View style={[styles.skillPill, styles.skillPink]}>

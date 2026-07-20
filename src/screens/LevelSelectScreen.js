@@ -3,10 +3,10 @@ import {
 	View,
 	Text,
 	FlatList,
-	TouchableOpacity,
 	Image,
 	StyleSheet,
 } from "react-native";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { levels } from "../data/levels";
 import { imageMap } from "../data/images";
 import { colors } from "../styles/theme";
@@ -15,8 +15,10 @@ import {
 	getUnlockedLevels,
 	resetProgress,
 } from "../services/progress";
+import SoundButton from "../components/SoundButton";
 
 export default function LevelSelectScreen({ navigation }) {
+	const insets = useSafeAreaInsets();
 	const [unlocked, setUnlocked] = useState([1]);
 	const [score, setScore] = useState(0);
 	const [currentLevel, setCurrentLevel] = useState(1);
@@ -66,26 +68,26 @@ export default function LevelSelectScreen({ navigation }) {
 					{!locked && completed && <Text style={styles.completedDot}>•</Text>}
 				</View>
 
-				<TouchableOpacity
+				<SoundButton
 					style={[styles.playButton, locked && styles.lockedButton, active && styles.playButtonActive]}
 					onPress={() => !locked && navigation.navigate("LevelGame", { levelId: item.id })}
 					disabled={locked}
 				>
 					<Text style={styles.playText}>{locked ? "Bloqueado" : active ? "Jugar ahora" : "Jugar"}</Text>
-				</TouchableOpacity>
+				</SoundButton>
 			</View>
 		);
 	};
 
 	return (
-		<View style={styles.container}>
-			<View style={styles.backButtonWrapper}>
-				<TouchableOpacity
+		<SafeAreaView style={styles.container}>
+			<View style={[styles.backButtonWrapper, { top: insets.top + 24 }]}>
+				<SoundButton
 					style={styles.backButton}
 					onPress={() => navigation.navigate("Mode")}
 				>
 					<Text style={styles.backIcon}>‹</Text>
-				</TouchableOpacity>
+				</SoundButton>
 			</View>
 
 			<View style={styles.headerBlock}>
@@ -108,7 +110,7 @@ export default function LevelSelectScreen({ navigation }) {
 				showsVerticalScrollIndicator={false}
 			/>
 
-			<TouchableOpacity
+			<SoundButton
 				style={styles.resetButton}
 				onPress={async () => {
 					await resetProgress();
@@ -119,8 +121,8 @@ export default function LevelSelectScreen({ navigation }) {
 				}}
 			>
 				<Text style={styles.resetText}>Reiniciar progreso</Text>
-			</TouchableOpacity>
-		</View>
+			</SoundButton>
+		</SafeAreaView>
 	);
 }
 
@@ -242,7 +244,6 @@ const styles = StyleSheet.create({
 	},
 	backButtonWrapper: {
 		position: "absolute",
-		top: 24,
 		left: 16,
 		zIndex: 10,
 	},
