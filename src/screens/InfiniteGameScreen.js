@@ -4,8 +4,10 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  Alert,
 } from "react-native";
+
 import { imageMap } from "../data/images";
 import { generateGame } from "../services/gameGenerator";
 import { addPoint, getScore, resetScore } from "../utils/score";
@@ -36,12 +38,39 @@ export default function InfiniteGameScreen({ navigation }) {
       }, 400);
 
     } else {
-      navigation.navigate("Lose", {
+
+      navigation.replace("Lose", {
         score: getScore(),
         returnRoute: "InfiniteGame",
-        fromMode: "infinite",
       });
+
     }
+
+  }
+
+  function finishGame() {
+
+    Alert.alert(
+      "Finalizar partida",
+      `¿Deseas terminar la partida?\n\nPuntaje actual: ${getScore()}`,
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Finalizar",
+          onPress: () => {
+
+            navigation.replace("Win", {
+              score: getScore(),
+              returnRoute: "InfiniteGame",
+            });
+
+          },
+        },
+      ]
+    );
 
   }
 
@@ -55,30 +84,45 @@ export default function InfiniteGameScreen({ navigation }) {
 
       <View style={styles.header}>
 
-        <Text style={styles.title}>
-          MODO INFINITO
-        </Text>
+          <Text style={styles.title}>
+              MODO INFINITO
+          </Text>
 
-        <Text style={styles.score}>
-          Puntaje: {score}
-        </Text>
+          <View style={styles.headerBottom}>
+
+              <Text style={styles.score}>
+                  ⭐ Puntaje: {score}
+              </Text>
+
+              <TouchableOpacity
+                  style={styles.exitButton}
+                  onPress={finishGame}
+              >
+                  <Text style={styles.exitText}>
+                      Salir
+                  </Text>
+              </TouchableOpacity>
+
+          </View>
 
       </View>
 
-      {/* AREA DE LOS OBJETOS */}
+      {/* OBJETOS */}
 
       <View style={styles.gameArea}>
 
         {
+
           Array.from({ length: game.quantity }).map((_, index) => (
 
-			<Image
-				key={index}
-				source={imageMap[game.object]}
-				style={styles.image}
-			/>
+            <Image
+              key={index}
+              source={imageMap[game.object]}
+              style={styles.image}
+            />
 
           ))
+
         }
 
       </View>
@@ -94,7 +138,8 @@ export default function InfiniteGameScreen({ navigation }) {
       <View style={styles.answers}>
 
         {
-          game.options.map(option => (
+
+          game.options.map((option) => (
 
             <TouchableOpacity
               key={option}
@@ -109,6 +154,7 @@ export default function InfiniteGameScreen({ navigation }) {
             </TouchableOpacity>
 
           ))
+
         }
 
       </View>
@@ -123,7 +169,7 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: "#FDF6E8"
+    backgroundColor: "#FDF6E8",
   },
 
   header: {
@@ -133,19 +179,40 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    elevation: 6
+    elevation: 6,
   },
 
   title: {
-    fontSize: 36,
+    fontSize: 34,
     fontWeight: "900",
-    color: "#000"
+    color: "#000",
   },
 
   score: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
-    marginTop: 8
+    marginTop: 8,
+  },
+
+  exitButton: {
+    position: "absolute",
+    right: 15,
+    top: 70,
+    backgroundColor: "#EF5350",
+    paddingHorizontal: 18,
+    paddingVertical: 8,
+    borderRadius: 20,
+    zIndex: 10,
+  },
+
+  exitText: {
+
+    color: "#FFF",
+
+    fontSize: 18,
+
+    fontWeight: "bold",
+
   },
 
   gameArea: {
@@ -156,51 +223,46 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     paddingHorizontal: 15,
-    paddingVertical: 20
+    paddingVertical: 20,
   },
 
-  emoji: {
-    fontSize: 70,
-    margin: 12
+  image: {
+    width: 100,
+    height: 100,
+    resizeMode: "contain",
+    margin: 8,
   },
 
   question: {
     textAlign: "center",
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: "bold",
-    marginBottom: 25
+    marginBottom: 25,
   },
 
   answers: {
     flexDirection: "row",
     justifyContent: "space-evenly",
     marginBottom: 35,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
 
   answerButton: {
-    width: 80,
-    height: 80,
+    width: 85,
+    height: 85,
     backgroundColor: "#ECECEC",
-    borderRadius: 12,
+    borderRadius: 15,
     borderWidth: 2,
     borderColor: "#333",
     justifyContent: "center",
     alignItems: "center",
-    elevation: 4
+    elevation: 4,
   },
 
   answerText: {
     fontSize: 38,
     fontWeight: "bold",
-    color: "#000"
+    color: "#000",
   },
-
-  image: {
-    width: 80,
-    height: 80,
-    resizeMode: "contain",
-    margin: 10,
-	},
 
 });

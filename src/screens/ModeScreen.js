@@ -26,7 +26,7 @@ export default function ModeScreen({ navigation }) {
             accessibilityRole="button"
             accessibilityLabel="Volver al inicio"
             style={styles.backButton}
-            onPress={() => navigation.goBack()}
+            onPress={() => navigation.replace("Home")}
           >
             <Text style={styles.backIcon}>‹</Text>
           </TouchableOpacity>
@@ -46,7 +46,7 @@ export default function ModeScreen({ navigation }) {
           accessibilityLabel="Jugar modo infinito"
           activeOpacity={0.86}
           style={[styles.modeCard, styles.infiniteCard]}
-          onPress={() => navigation.navigate("InfiniteGame")}
+          onPress={() => navigation.replace("InfiniteGame")}
         >
           <View style={[styles.iconCircle, styles.infiniteIconCircle]}>
             <Text style={styles.infinityIcon}>∞</Text>
@@ -65,7 +65,7 @@ export default function ModeScreen({ navigation }) {
           accessibilityLabel="Jugar por niveles"
           activeOpacity={0.86}
           style={[styles.modeCard, styles.levelsCard]}
-          onPress={() => navigation.navigate("LevelSelect")}
+          onPress={() => navigation.replace("LevelSelect")}
         >
           <View style={[styles.iconCircle, styles.levelsIconCircle]}>
             <Text style={styles.numberIcon}>1 2 3</Text>
