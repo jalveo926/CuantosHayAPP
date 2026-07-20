@@ -20,28 +20,20 @@ export default function ResultScreen({
   const score = route?.params?.score ?? 0;
   const returnRoute = route?.params?.returnRoute || "Mode";
   const returnParams = route?.params?.returnParams;
-
   function getMessage(score) {
-
-    if (score <= 3)
-      return "¡Puedes hacerlo!";
-
-    if (score <= 7)
-      return "¡Muy bien!";
-
-    if (score <= 12)
-      return "¡Excelente trabajo!";
-
+    if (score <= 3) return "¡Puedes hacerlo!";
+    if (score <= 7) return "¡Muy bien!";
+    if (score <= 12) return "¡Excelente trabajo!";
     return "¡Eres un campeón!";
   }
 
   const returnToGame = () => {
+    navigation.replace(returnRoute, returnParams);
+  };
 
-    navigation.replace(
-      returnRoute,
-      returnParams
-    );
-
+  const goToMenu = () => {
+    const isInfinite = route?.params?.fromMode === "infinite";
+    navigation.replace(isInfinite ? "Mode" : "LevelSelect");
   };
 
   return (
@@ -78,21 +70,13 @@ export default function ResultScreen({
           {getMessage(score)}
         </Text>
 
+
         <TouchableOpacity
           accessibilityRole="button"
-          accessibilityLabel={
-            direction === "right"
-              ? "Continuar"
-              : "Intentar otra vez"
-          }
+          accessibilityLabel={direction === "right" ? "Continuar" : "Intentar otra vez"}
           activeOpacity={0.8}
           onPress={returnToGame}
-          style={[
-            styles.button,
-            direction === "right"
-              ? styles.winButton
-              : styles.loseButton,
-          ]}
+          style={[styles.button, direction === "right" ? styles.winButton : styles.loseButton]}
         >
 
           <View style={styles.arrowShaft} />
@@ -100,12 +84,20 @@ export default function ResultScreen({
           <View
             style={[
               styles.arrowHead,
-              direction === "right"
-                ? styles.arrowHeadRight
-                : styles.arrowHeadLeft,
+              direction === "right" ? styles.arrowHeadRight : styles.arrowHeadLeft,
             ]}
           />
 
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel="Menu"
+          activeOpacity={0.8}
+          onPress={goToMenu}
+          style={[styles.menuButton]}
+        >
+          <Text style={styles.menuText}>Menu</Text>
         </TouchableOpacity>
 
       </View>

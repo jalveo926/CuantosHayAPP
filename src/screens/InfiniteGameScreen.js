@@ -36,12 +36,11 @@ export default function InfiniteGameScreen({ navigation }) {
       }, 400);
 
     } else {
-
       navigation.navigate("Lose", {
         score: getScore(),
-    	returnRoute: "InfiniteGame"
+        returnRoute: "InfiniteGame",
+        fromMode: "infinite",
       });
-
     }
 
   }

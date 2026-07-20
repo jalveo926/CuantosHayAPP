@@ -93,6 +93,27 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     fontWeight: "600",
   },
+  menuButton: {
+    marginTop: 16,
+    width: 140,
+    height: 46,
+    borderRadius: 22,
+    backgroundColor: "#FFFFFF",
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#D1D1D1",
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 6 },
+  },
+  menuText: {
+    fontSize: 16,
+    fontWeight: "900",
+    color: "#3F3F3F",
+  },
 });
 
 export default styles;
