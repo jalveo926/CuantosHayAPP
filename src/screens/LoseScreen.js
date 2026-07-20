@@ -2,11 +2,14 @@ import React from "react";
 import WorkInProgressScreen from "../components/WorkInProgressScreen";
 
 export default function LoseScreen({ navigation }) {
-	return (
+  return (
 		<WorkInProgressScreen
-			navigation={navigation}
-			title="Pantalla de Derrota"
-			description="Pantalla comun lista como base. Se puede personalizar cuando se conecte con cada modo."
-		/>
-	);
+      navigation={navigation}
+      route={route}
+      backgroundColor="#74736D"
+      imageSource={require("../../assets/confusedkid.webp")}
+      title={"INTENTA\nOTRA VEZ"}
+      direction="left"
+    />
+  );
 }

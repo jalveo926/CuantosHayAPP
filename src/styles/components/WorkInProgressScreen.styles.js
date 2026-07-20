@@ -32,6 +32,29 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 20,
   },
+  testButtonsContainer: {
+    width: "100%",
+    gap: 12,
+    marginBottom: 20,
+  },
+  testButton: {
+    width: "100%",
+    paddingHorizontal: 20,
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  winTestButton: {
+    backgroundColor: colors.levelsGreen,
+  },
+  loseTestButton: {
+    backgroundColor: colors.infinitePurple,
+  },
+  testButtonText: {
+    color: colors.textPrimary,
+    fontSize: 16,
+    fontWeight: "700",
+  },
   actionButton: {
     backgroundColor: colors.primaryYellow,
     paddingHorizontal: 20,
