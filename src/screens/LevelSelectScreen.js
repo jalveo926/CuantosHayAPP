@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+	SafeAreaView,
 	View,
 	Text,
 	FlatList,
@@ -78,7 +79,7 @@ export default function LevelSelectScreen({ navigation }) {
 	};
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<View style={styles.backButtonWrapper}>
 				<TouchableOpacity
 					style={styles.backButton}
@@ -120,7 +121,7 @@ export default function LevelSelectScreen({ navigation }) {
 			>
 				<Text style={styles.resetText}>Reiniciar progreso</Text>
 			</TouchableOpacity>
-		</View>
+		</SafeAreaView>
 	);
 }
 
@@ -132,6 +133,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 	},
 	headerBlock: {
+		marginTop: 65,
 		marginBottom: 18,
 		padding: 18,
 		borderRadius: 24,

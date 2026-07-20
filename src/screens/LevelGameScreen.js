@@ -52,13 +52,9 @@ export default function LevelGameScreen({ navigation, route }) {
 
 	return (
 		<View style={styles.container}>
-
 			<View style={styles.header}>
-
 				<Text style={styles.title}>MODO POR NIVELES</Text>
-
 				<Text style={styles.score}>Puntaje: {score}</Text>
-
 			</View>
 
 			<View style={styles.gameArea}>
@@ -80,13 +76,11 @@ export default function LevelGameScreen({ navigation, route }) {
 					</TouchableOpacity>
 				))}
 			</View>
-
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-
 	container: {
 		flex: 1,
 		backgroundColor: "#FDF6E8"
