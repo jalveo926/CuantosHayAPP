@@ -71,6 +71,28 @@ const styles = StyleSheet.create({
     left: 17,
     transform: [{ rotate: "-135deg" }],
   },
+  scoreTitle: {
+    fontSize: 22,
+    color: "#555",
+    marginTop: 15,
+    fontWeight: "600",
+  },
+
+  score: {
+    fontSize: 64,
+    fontWeight: "bold",
+    color: "#F39C12",
+    marginBottom: 15,
+  },
+
+  message: {
+    fontSize: 20,
+    textAlign: "center",
+    color: "#333",
+    marginHorizontal: 30,
+    marginBottom: 30,
+    fontWeight: "600",
+  },
 });
 
 export default styles;

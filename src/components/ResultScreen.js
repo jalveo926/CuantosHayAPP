@@ -16,36 +16,87 @@ export default function ResultScreen({
   title,
   direction,
 }) {
-  const returnToGame = () => {
-    if (navigation.canGoBack()) {
-      navigation.goBack();
-      return;
-    }
 
-    const returnRoute = route?.params?.returnRoute;
-    navigation.replace(returnRoute || "Mode", route?.params?.returnParams);
+  const score = route?.params?.score ?? 0;
+  const returnRoute = route?.params?.returnRoute || "Mode";
+  const returnParams = route?.params?.returnParams;
+
+  function getMessage(score) {
+
+    if (score <= 3)
+      return "¡Puedes hacerlo! 💪";
+
+    if (score <= 7)
+      return "¡Muy bien! 🌟";
+
+    if (score <= 12)
+      return "¡Excelente trabajo! 🎉";
+
+    return "¡Eres un campeón! 👑";
+  }
+
+  const returnToGame = () => {
+
+    navigation.replace(
+      returnRoute,
+      returnParams
+    );
+
   };
 
   return (
+
     <SafeAreaView style={styles.screen}>
-      <View style={[styles.colorPanel, { backgroundColor }]} />
+
+      <View
+        style={[
+          styles.colorPanel,
+          { backgroundColor }
+        ]}
+      />
 
       <View style={styles.content}>
-        <Image source={imageSource} style={styles.illustration} />
 
-        <Text style={styles.title}>{title}</Text>
+        <Image
+          source={imageSource}
+          style={styles.illustration}
+        />
+
+        <Text style={styles.title}>
+          {title}
+        </Text>
+
+        <Text style={styles.scoreTitle}>
+          Puntaje
+        </Text>
+
+        <Text style={styles.score}>
+          {score}
+        </Text>
+
+        <Text style={styles.message}>
+          {getMessage(score)}
+        </Text>
 
         <TouchableOpacity
           accessibilityRole="button"
-          accessibilityLabel={direction === "right" ? "Continuar" : "Intentar otra vez"}
+          accessibilityLabel={
+            direction === "right"
+              ? "Continuar"
+              : "Intentar otra vez"
+          }
           activeOpacity={0.8}
           onPress={returnToGame}
           style={[
             styles.button,
-            direction === "right" ? styles.winButton : styles.loseButton,
+            direction === "right"
+              ? styles.winButton
+              : styles.loseButton,
           ]}
         >
+
           <View style={styles.arrowShaft} />
+
           <View
             style={[
               styles.arrowHead,
@@ -54,8 +105,13 @@ export default function ResultScreen({
                 : styles.arrowHeadLeft,
             ]}
           />
+
         </TouchableOpacity>
+
       </View>
+
     </SafeAreaView>
+
   );
+
 }

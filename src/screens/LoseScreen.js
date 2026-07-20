@@ -1,15 +1,19 @@
 import React from "react";
-import WorkInProgressScreen from "../components/WorkInProgressScreen";
+import ResultScreen from "../components/ResultScreen";
 
-export default function LoseScreen({ navigation }) {
-  return (
-		<WorkInProgressScreen
-      navigation={navigation}
-      route={route}
-      backgroundColor="#74736D"
-      imageSource={require("../../assets/confusedkid.webp")}
-      title={"INTENTA\nOTRA VEZ"}
-      direction="left"
-    />
-  );
+export default function LoseScreen({ navigation, route }) {
+
+    return (
+
+        <ResultScreen
+            navigation={navigation}
+            route={route}
+            backgroundColor="#74736D"
+            imageSource={require("../../assets/confusedkid.webp")}
+            title={"INTENTA\nOTRA VEZ"}
+            direction="left"
+        />
+
+    );
+
 }

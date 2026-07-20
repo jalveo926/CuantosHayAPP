@@ -48,7 +48,8 @@ export default function InfiniteGameScreen({ navigation }) {
     } else {
 
       navigation.navigate("Lose", {
-        score: getScore()
+        score: getScore(),
+    	returnRoute: "InfiniteGame"
       });
 
     }
