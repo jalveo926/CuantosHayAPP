@@ -6,21 +6,9 @@ import {
   TouchableOpacity,
   StyleSheet
 } from "react-native";
-
+import { imageMap } from "../data/images";
 import { generateGame } from "../services/gameGenerator";
 import { addPoint, getScore, resetScore } from "../utils/score";
-
-const imageMap = {
-  apple: require("../../assets/apple.png"),
-  lion: require("../../assets/lion.png"),
-  banana: require("../../assets/banana.png"),
-  cat: require("../../assets/cat.png"),
-  dog: require("../../assets/dog.png"),
-  ball: require("../../assets/ball.png"),
-  star: require("../../assets/star.png"),
-  car: require("../../assets/car.png"),
-  duck: require("../../assets/duck.png")
-};
 
 export default function InfiniteGameScreen({ navigation }) {
 
@@ -161,16 +149,15 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
 
-  gameArea: {
+	gameArea: {
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
-    alignContent: "center",
     alignItems: "center",
-    paddingHorizontal: 15,
-    paddingVertical: 20
-  },
+    paddingHorizontal: 10,
+    paddingVertical: 30,
+	},
 
   emoji: {
     fontSize: 70,
@@ -210,8 +197,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: 80,
-    height: 80,
+    width: 250,
+    height: 250,
     resizeMode: "contain",
     margin: 10,
 	},
